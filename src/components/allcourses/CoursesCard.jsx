@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./courses.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
 
 const CoursesCard = () => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   // Function to fetch courses from the API
   const fetchCourses = async () => {
@@ -25,11 +27,45 @@ const CoursesCard = () => {
   };
 
   useEffect(() => {
+    const storeUserId = localStorage.getItem('userId');
+    console.log('storeUserId:', storeUserId)
+    if (storeUserId) {
+      setUserId(storeUserId);
+    }
     fetchCourses();
-  }, []);
+  }, [fetchCourses]); // Added fetchCourses to dependency array
+
+  const handleEnroll = async (courseId) => {
+    if (!userId) {
+      toast.error('User not logged in.');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('http://localhost:4000/enrollInCourse', {
+        userId,
+        courseId
+      });
+  
+      console.log('Enrollment response:', response.data); // Log the response data
+  
+      if (response.data.status) {
+        setTimeout(() => {
+          toast.success('Successfully enrolled in the course!');
+          alert('Successfully enrolled in the course!');
+        }, 3000);
+      } else {
+        toast.error(response.data.message || 'Enrollment failed.');
+      }
+    } catch (error) {
+      toast.error('An error occurred while enrolling in the course.');
+      console.error('Enrollment error:', error.response ? error.response.data : error.message);
+    }
+  };
 
   return (
     <section className='coursesCard'>
+      <ToastContainer />
       <div className='container grid2'>
         {courses.map((course, index) => (
           <div key={index} className='items'>
@@ -67,7 +103,10 @@ const CoursesCard = () => {
             <div className='price'>
               <h3>{course.priceAll} / {course.pricePer}</h3>
             </div>
-            <button onClick={() => navigate('/register_login')} className='outline-btn'>
+            <button onClick={() => {
+              handleEnroll(course._id);
+              navigate(`/courseDetail/${course._id}`, { state: { course } });
+            }} className='outline-btn'>
               ENROLL NOW!
             </button>
           </div>
@@ -75,6 +114,6 @@ const CoursesCard = () => {
       </div>
     </section>
   );
-}
+};
 
 export default CoursesCard;
