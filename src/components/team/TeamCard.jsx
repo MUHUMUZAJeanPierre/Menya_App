@@ -8,7 +8,7 @@ const TeamCard = () => {
   const handleFetch = async()=>{
     await axios({
       method:"GET",
-      url:"http://localhost:4000/getTeams",
+      url:"https://ed-2.onrender.com/getTeams",
       headers:{
         // Authorization:'Bearer '
       }

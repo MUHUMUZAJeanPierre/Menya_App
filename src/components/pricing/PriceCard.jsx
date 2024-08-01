@@ -7,7 +7,7 @@ const PriceCard = () => {
   const handleFetch = async()=>{
     await axios({
       method: 'GET',
-      url: 'http://localhost:4000/listPrice',
+      url: 'http://localhost:/listPrice',
       headers: {
         // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
       }

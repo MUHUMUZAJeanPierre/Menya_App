@@ -12,7 +12,7 @@ const CourseDetail = () => {
   useEffect(() => {
     const fetchCourseDetail = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/getCourseById/${id}`);
+        const response = await axios.get(`https://ed-2.onrender.com/getCourseById/${id}`);
         console.log('Course detail response:', response.data);
         console.log(response.data.data)
         setCourseDetail(response);

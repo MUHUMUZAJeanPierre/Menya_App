@@ -14,7 +14,7 @@ const CoursesCard = () => {
     try {
       const response = await axios({
         method: 'GET',
-        url: `http://localhost:4000/getCourses`, // Adjust endpoint if necessary
+        url: `http://localhost:/getCourses`, // Adjust endpoint if necessary
         headers: {
           // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Replace with actual token
         },
@@ -42,7 +42,7 @@ const CoursesCard = () => {
     }
   
     try {
-      const response = await axios.post('http://localhost:4000/enrollInCourse', {
+      const response = await axios.post('https://ed-2.onrender.com/enrollInCourse', {
         userId,
         courseId
       });

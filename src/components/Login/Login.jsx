@@ -18,7 +18,7 @@ const Login = () => {
         try {
             await axios({
                 method: 'post',
-                url: 'http://localhost:4000/login',
+                url: 'https://ed-2.onrender.com/login',
                 data: form,
             }).then((response) =>{
                 setToken(response.data.token);
@@ -66,7 +66,7 @@ const Login = () => {
                         <p>By continuing, I agree to the terms of use & privacy policy</p>
                     </div>
                     <p style={{ fontSize: '15px' }}>
-                        Don't have an account? <span onClick={() => navigate('/register')}>Register here</span>
+                        Dont have an account? <span onClick={() => navigate('/register')}>Register here</span>
                     </p>
                 </form>
             </div>

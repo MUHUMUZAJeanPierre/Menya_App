@@ -18,7 +18,7 @@ const Register = () => {
         try {
             await axios({
                 method: 'post',
-                url: 'http://localhost:4000/register',
+                url: 'https://ed-2.onrender.com/register',
                 data: form,
             }).then((response) =>{
                 setTimeout(()=>{
