@@ -13,7 +13,7 @@ import Contact from './components/contact/Contact';
 import LoginPopup from './components/LoginPopup/LoginPopup';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import courseDetail from './components/CourseDetail/CourseDetail'
+// import courseDetail from './components/CourseDetail/CourseDetail'
 
 const Layout = () => {
   return (
@@ -37,7 +37,7 @@ const App = () => {
           <Route path='/pricing' element={<Pricing />} /> 
           <Route path='/blog' element={<Blog />} /> 
           <Route path='/contact' element={<Contact />} /> 
-          <Route path='/courseDetail/:id' element={<courseDetail />} /> 
+          {/* <Route path='/courseDetail/:id' element={<courseDetail />} />  */}
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
